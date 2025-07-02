@@ -10,6 +10,7 @@ This guide provides a complete, step-by-step process for deploying a MedusaJS e-
 ## Project Structure
 
 This guide assumes you are using a monorepo structure. 
+
 ---
 
 ## Part 1: Deploy the Backend (`/backend`) to Render
