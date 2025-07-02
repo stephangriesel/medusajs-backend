@@ -9,9 +9,7 @@ This guide provides a complete, step-by-step process for deploying a MedusaJS e-
 
 ## Project Structure
 
-This guide assumes you are using a monorepo structure. Your entire project will live in a single Git repository organized as follows:
-
-/your-ecommerce-project/├── backend/│   ├── src/│   ├── package.json│   └── Dockerfile  <-- Dockerfile for the backend└── frontend/├── src/└── package.json
+This guide assumes you are using a monorepo structure. 
 ---
 
 ## Part 1: Deploy the Backend (`/backend`) to Render
