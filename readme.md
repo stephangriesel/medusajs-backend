@@ -81,15 +81,16 @@ Both Render and Netlify will deploy directly from your Git repository.
 
 Your production backend requires a PostgreSQL database and a Redis instance.
 
-1.  Log in to your Render dashboard.
-2.  **Create PostgreSQL:**
+1.  **Create PostgreSQL on Render:**
+    * Log in to your Render dashboard.
     * Click **New +** > **PostgreSQL**.
     * Give it a unique name (e.g., `my-medusa-db`) and click **Create Database**.
     * Once created, go to the **Connect** tab and copy the **Internal Connection String**.
-3.  **Create Redis:**
-    * Click **New +** > **Redis**.
-    * Give it a unique name (e.g., `my-medusa-redis`) and click **Create Redis**.
-    * Copy the **Internal Redis URL**.
+2.  **Create Redis on Upstash:**
+    * Go to [Upstash](https://upstash.com/) and sign up for a free account.
+    * In the Upstash console, click **Create Database**.
+    * Give it a name (e.g., `medusa-redis`), choose a region, and click **Create**.
+    * Once created, you will see connection details. Copy the connection string that looks like `redis://...`. This is your Redis URL.
 
 ### Step 5: Deploy the Backend Service on Render
 
