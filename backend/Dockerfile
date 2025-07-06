@@ -1,27 +1,35 @@
-# ---- Base Stage ----
-FROM node:18-alpine AS base
+# ---- Builder Stage ----
+# This stage installs all dependencies (including dev) and builds the source code.
+FROM node:18-alpine AS builder
+
 WORKDIR /app
 
-# ---- Dependencies Stage ----
-FROM base AS deps
+# Copy package files and install all dependencies
+COPY package.json package-lock.json* ./
+RUN npm install
+
+# Copy the rest of the source code
+COPY . .
+
+# Run the build script which creates the /dist folder
+RUN npm run build
+
+
+# ---- Production Stage ----
+# This stage creates the final, lean image for production.
+FROM node:18-alpine AS production
+
+WORKDIR /app
+
+# Set the environment to production
+ENV NODE_ENV=production
+
+# Copy package files and install ONLY production dependencies
 COPY package.json package-lock.json* ./
 RUN npm install --omit=dev
 
-# ---- Build Stage ----
-FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-# Build the Medusa project for production
-RUN npm run build
-
-# ---- Production Stage ----
-FROM base AS production
-ENV NODE_ENV=production
-
-# Copy built files and production node_modules
+# Copy the built code from the 'builder' stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
-COPY --from=deps /app/node_modules ./node_modules
 
 # Expose the port the app runs on
 EXPOSE 9000
