@@ -1,47 +1,26 @@
-# ---- Builder Stage ----
-# This stage installs all dependencies (including dev) and builds the source code.
-FROM node:18-alpine AS builder
+# Use the full Node.js 18 image
+FROM node:18
 
+# Set the working directory
 WORKDIR /app
 
-# Copy package files first to leverage Docker cache
+# Copy package files
 COPY package.json package-lock.json* ./
 
-# Install all dependencies
+# Install ALL dependencies (including dev dependencies needed for the build)
 RUN npm install
 
-# Copy the rest of the source code
+# Copy the rest of your application source code
 COPY . .
 
-# Run the build script which creates the /dist folder
-# We add "|| exit 1" to ensure the build stops if this command fails
-RUN npm run build || exit 1
+# Run the build command. This creates the 'dist' directory.
+RUN npm run build
 
-# --- DEBUG STEP ---
-# List the files in the app directory to see if /dist was created.
-# Check your Render build logs for the output of this command.
-RUN echo "--- Listing files after build ---" && ls -la
-
-
-# ---- Production Stage ----
-# This stage creates the final, lean image for production.
-FROM node:18-alpine AS production
-
-WORKDIR /app
-
-# Set the environment to production
+# Set the environment to production for the runtime
 ENV NODE_ENV=production
 
-# Copy package files and install ONLY production dependencies
-COPY package.json package-lock.json* ./
-RUN npm install --omit=dev
-
-# Copy the built code from the 'builder' stage
-# This is the command that is currently failing.
-COPY --from=builder /app/dist ./dist
-
-# Expose the port the app runs on
+# Expose the port the app will run on
 EXPOSE 9000
 
-# Command to run the Medusa server
+# The command to start the application
 CMD ["npm", "run", "start"]
