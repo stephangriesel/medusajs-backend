@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of your application source code
 COPY . .
 
-# Run the build command. This creates the 'dist' directory.
-RUN npm run build
+# Run the build command. This creates the 'dist' directory. Allocates up to 4GB of memory specifically for the build script
+RUN node --max-old-space-size=4096 ./node_modules/.bin/npm run build
 
 # Set the environment to production for the runtime
 ENV NODE_ENV=production
