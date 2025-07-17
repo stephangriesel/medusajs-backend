@@ -1,4 +1,4 @@
-const { defineConfig } = require("@medusajs/medusa");
+const { defineConfig } = require("@medusajs/framework");
 
 // This is the main configuration object for your Medusa backend
 module.exports = defineConfig({
