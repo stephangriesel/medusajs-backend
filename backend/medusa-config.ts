@@ -3,6 +3,11 @@ module.exports = {
     database_type: "postgres",
     store_cors: process.env.STORE_CORS,
     admin_cors: process.env.ADMIN_CORS,
+    
+    http: {
+      jwtSecret: process.env.JWT_SECRET,
+      cookieSecret: process.env.COOKIE_SECRET,
+    },
   },
   modules: {
     eventBus: {
