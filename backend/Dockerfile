@@ -23,4 +23,6 @@ ENV NODE_ENV=production
 EXPOSE 9000
 
 # The command to start the application
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
+# Debug uncomment the next line
+CMD ["sh", "-c", "echo '--- Printing Environment Variables ---' && printenv && echo '--- Starting Medusa ---' && npm run start"]
