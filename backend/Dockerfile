@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Run the build command. This creates the 'dist' directory. Allocates up to 4GB of memory specifically for the build script
-RUN node --max-old-space-size=4096 ./node_modules/.bin/npm run build
+RUN npm run build
 # --- DEBUG STEP ---
 # List the contents of the 'dist' directory to find the main file.
 RUN echo "--- Listing contents of dist directory ---" && ls -la dist
