@@ -1,5 +1,8 @@
-module.exports = {
+export default {
   projectConfig: {
+    database_url: process.env.DATABASE_URL,
+    redis_url: process.env.REDIS_URL,
+
     database_type: "postgres",
     store_cors: process.env.STORE_CORS,
     admin_cors: process.env.ADMIN_CORS,
