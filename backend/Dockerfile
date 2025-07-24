@@ -17,7 +17,7 @@ COPY backend/. .
 RUN npm run build
 # --- DEBUG STEP ---
 # List the contents of the 'dist' directory to find the main file.
-RUN echo "--- Listing contents of dist directory ---" && ls -la dist
+# RUN echo "--- Listing contents of dist directory ---" && ls -la dist
 
 # Set the environment to production for the runtime
 ENV NODE_ENV=production
