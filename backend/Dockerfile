@@ -1,5 +1,5 @@
 # Use the full Node.js 18 image.
-FROM node:18
+FROM node:20
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -15,6 +15,9 @@ COPY backend/. .
 
 # Run the build command. This creates the 'dist' directory.
 RUN npm run build
+# --- DEBUG STEP ---
+# List the contents of the 'dist' directory to find the main file.
+RUN echo "--- Listing contents of dist directory ---" && ls -la dist
 
 # Set the environment to production for the runtime
 ENV NODE_ENV=production
