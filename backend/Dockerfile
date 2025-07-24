@@ -1,23 +1,20 @@
-# Use the full Node.js 18 image
+# Use the full Node.js 18 image.
 FROM node:18
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json* ./
+# Copy package files FROM THE 'backend' SUBDIRECTORY
+COPY backend/package.json backend/package-lock.json* ./
 
-# Install ALL dependencies (including dev dependencies needed for the build)
+# Install ALL dependencies
 RUN npm install
 
-# Copy the rest of your application source code
-COPY . .
+# Copy the rest of your backend source code FROM THE 'backend' SUBDIRECTORY
+COPY backend/. .
 
-# Run the build command. This creates the 'dist' directory. Allocates up to 4GB of memory specifically for the build script
+# Run the build command. This creates the 'dist' directory.
 RUN npm run build
-# --- DEBUG STEP ---
-# List the contents of the 'dist' directory to find the main file.
-RUN echo "--- Listing contents of dist directory ---" && ls -la dist
 
 # Set the environment to production for the runtime
 ENV NODE_ENV=production
@@ -26,6 +23,4 @@ ENV NODE_ENV=production
 EXPOSE 9000
 
 # The command to start the application
-# CMD ["npm", "run", "start"]
-# Debug uncomment the next line
-CMD ["sh", "-c", "echo '--- Printing Environment Variables ---' && printenv && echo '--- Starting Medusa ---' && npm run start"]
+CMD ["npm", "run", "start"]
