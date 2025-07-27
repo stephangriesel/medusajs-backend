@@ -16,7 +16,7 @@
   "clean": "rm -rf dist",
   "build:server": "npm run clean && tsc -p tsconfig.server.json",
   "build": "npm run build:server",
-  "migrate": "medusa migrations run",
+  "migrate": "medusa db:migrate",
   "seed": "medusa exec ./src/scripts/seed.ts",
   "start": "medusa start",
   "dev": "medusa develop",
