@@ -12,18 +12,18 @@
     "headless",
     "medusa"
   ],
-"scripts": {
-  "clean": "rm -rf dist",
-  "build:server": "npm run clean && tsc -p tsconfig.server.json",
-  "build": "npm run build:server",
-  "migrate": "medusa db:migrate",
-  "seed": "medusa exec ./src/scripts/seed.ts",
-  "start": "medusa start",
-  "dev": "medusa develop",
-  "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
-  "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
-  "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
-},
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:server": "npm run clean && tsc -p tsconfig.server.json",
+    "build": "npm run build:server",
+    "migrate": "medusa db:migrate",
+    "start": "node --preserve-symlinks --trace-warnings dist/main.js",
+    "seed": "medusa exec ./src/scripts/seed.ts",
+    "dev": "medusa develop",
+    "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+    "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
+    "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
+  },
   "dependencies": {
     "@medusajs/admin-sdk": "2.8.6",
     "@medusajs/cli": "2.8.6",
@@ -57,7 +57,7 @@
   "engines": {
     "node": ">=20"
   },
-    "overrides": {
+  "overrides": {
     "zod": "3.24.0"
   }
 }
