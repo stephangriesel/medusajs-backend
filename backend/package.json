@@ -17,7 +17,7 @@
     "build:server": "npm run clean && tsc -p tsconfig.server.json",
     "build": "npm run build:server",
     "migrate": "medusa db:migrate",
-    "start": "medusa start",
+    "start": "medusa db:migrate && medusa start",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "dev": "medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
