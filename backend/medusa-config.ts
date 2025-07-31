@@ -1,9 +1,8 @@
 export default {
   projectConfig: {
-    database_url: process.env.DATABASE_URL,
-    redis_url: process.env.REDIS_URL,
-
     database_type: "postgres",
+    database_url: process.env.DATABASE_URL,
+    
     store_cors: process.env.STORE_CORS,
     admin_cors: process.env.ADMIN_CORS,
     
