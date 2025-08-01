@@ -1,4 +1,4 @@
-# Use the full Node.js 18 image.
+# Use Node.js 20 to match the project's requirements
 FROM node:20
 
 # Set the working directory inside the container
@@ -13,11 +13,8 @@ RUN npm install
 # Copy the rest of your backend source code FROM THE 'backend' SUBDIRECTORY
 COPY backend/. .
 
-# Run the build command. This creates the 'dist' directory.
+# Run the build command for the server only
 RUN npm run build
-# --- DEBUG STEP ---
-# List the contents of the 'dist' directory to find the main file.
-# RUN echo "--- Listing contents of dist directory ---" && ls -la dist
 
 # Set the environment to production for the runtime
 ENV NODE_ENV=production
