@@ -4,14 +4,14 @@ FROM node:20
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files from the current directory (which is /backend)
-COPY package.json package-lock.json* ./
+# Copy package files FROM THE 'backend' SUBDIRECTORY
+COPY backend/package.json backend/package-lock.json* ./
 
 # Install ALL dependencies
 RUN npm install
 
-# Copy the rest of the source code from the current directory
-COPY . .
+# Copy the rest of your backend source code FROM THE 'backend' SUBDIRECTORY
+COPY backend/. .
 
 # Make the startup script executable
 RUN chmod +x ./start.sh
@@ -25,5 +25,5 @@ ENV NODE_ENV=production
 # Expose the port the app will run on
 EXPOSE 9000
 
-# The command to start the application
-CMD ["npm", "run", "start"]
+# The command to start the application using our script
+CMD ["./start.sh"]
