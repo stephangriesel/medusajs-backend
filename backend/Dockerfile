@@ -4,14 +4,14 @@ FROM node:20
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package files FROM THE 'backend' SUBDIRECTORY
-COPY backend/package.json backend/package-lock.json* ./
+# Copy package files from the current directory (which is /backend)
+COPY package.json package-lock.json* ./
 
 # Install ALL dependencies
 RUN npm install
 
-# Copy the rest of your backend source code FROM THE 'backend' SUBDIRECTORY
-COPY backend/. .
+# Copy the rest of the source code from the current directory
+COPY . .
 
 # Run the build command for the server only
 RUN npm run build
