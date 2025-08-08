@@ -12,15 +12,15 @@
     "headless",
     "medusa"
   ],
-"scripts": {
-  "clean": "rm -rf dist",
-  "build:server": "npm run clean && tsc -p tsconfig.server.json",
-  "build": "npm run build:server",
-  "migrate": "medusa db:migrate",
-  "start": "medusa start",
-  "seed": "medusa exec ./src/scripts/seed.ts",
-  "dev": "medusa develop"
-},
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:server": "npm run clean && tsc -p tsconfig.server.json",
+    "build": "npm run build:server",
+    "migrate": "medusa db:migrate",
+    "start": "medusa start",
+    "seed": "medusa exec ./src/scripts/seed.ts",
+    "dev": "medusa develop"
+  },
   "dependencies": {
     "@medusajs/admin-sdk": "2.8.6",
     "@medusajs/cli": "2.8.6",
@@ -31,6 +31,7 @@
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "awilix": "^8.0.1",
+    "medusa-core-utils": "^1.2.3",
     "pg": "^8.13.0"
   },
   "devDependencies": {
