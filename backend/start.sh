@@ -1,12 +1,13 @@
 #!/bin/sh
-
-# Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Run Migrations
-echo "--- Running database migrations ---"
-npm run migrate
+# Define the direct path to the Medusa CLI
+MEDUSA_CMD="./node_modules/.bin/medusa"
 
-# Start the server
+# Run Migrations directly
+echo "--- Running database migrations ---"
+$MEDUSA_CMD db:migrate
+
+# Start the server directly
 echo "--- Starting Medusa server ---"
-npm run start
+$MEDUSA_CMD start
