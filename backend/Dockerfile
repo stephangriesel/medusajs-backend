@@ -23,4 +23,4 @@ ENV NODE_ENV=production
 EXPOSE 9000
 
 # The command to start the application using our custom Node.js script
-CMD ["./start.sh"]
+CMD ["sh", "./start.sh"]
