@@ -13,9 +13,6 @@ RUN npm install
 # Copy the rest of the source code from the current directory
 COPY . .
 
-# Make the startup script executable
-RUN chmod +x ./start.sh
-
 # Run the build command for the server only
 RUN npm run build
 
@@ -25,5 +22,5 @@ ENV NODE_ENV=production
 # Expose the port the app will run on
 EXPOSE 9000
 
-# The command to start the application using our script
-CMD ["./start.sh"]
+# The command to start the application using our custom Node.js script
+CMD ["node", "start.js"]
