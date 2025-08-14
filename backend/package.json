@@ -19,8 +19,7 @@
     "migrate": "medusa db:migrate",
     "start": "medusa start",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "dev": "medusa develop",
-    "test:env": "node test-env.js"
+    "dev": "medusa develop"
   },
   "dependencies": {
     "@medusajs/admin-sdk": "2.8.6",
