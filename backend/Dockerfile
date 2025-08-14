@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the source code from the current directory
 COPY . .
 
+# Make the startup script executable
+RUN chmod +x ./start.sh
+
 # Run the build command for the server only
 RUN npm run build
 
