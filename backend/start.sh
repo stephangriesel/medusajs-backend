@@ -6,10 +6,10 @@ set -e
 echo "--- Waiting for database to be ready ---"
 sleep 20
 
-# Run Migrations
+# Run Migrations, explicitly passing the DATABASE_URL
 echo "--- Running database migrations ---"
-npm run migrate
+DATABASE_URL=$DATABASE_URL npm run migrate
 
-# Start the server
+# Start the server, explicitly passing all variables
 echo "--- Starting Medusa server ---"
-npm run start
+DATABASE_URL=$DATABASE_URL REDIS_URL=$REDIS_URL JWT_SECRET=$JWT_SECRET COOKIE_SECRET=$COOKIE_SECRET npm run start
