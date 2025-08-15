@@ -1,15 +1,10 @@
 #!/bin/sh
-# Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Wait for the database to be ready.
-echo "--- Waiting for database to be ready ---"
-sleep 20
+# FOR TESTING: Start the server first to see if it can read the environment variables
+echo "--- Starting Medusa server (TEST) ---"
+DATABASE_URL=$DATABASE_URL REDIS_URL=$REDIS_URL JWT_SECRET=$JWT_SECRET COOKIE_SECRET=$COOKIE_SECRET npm run start
 
-# Run Migrations, explicitly passing the DATABASE_URL
+# This part will likely not be reached, which is okay for this test.
 echo "--- Running database migrations ---"
 DATABASE_URL=$DATABASE_URL npm run migrate
-
-# Start the server, explicitly passing all variables
-echo "--- Starting Medusa server ---"
-DATABASE_URL=$DATABASE_URL REDIS_URL=$REDIS_URL JWT_SECRET=$JWT_SECRET COOKIE_SECRET=$COOKIE_SECRET npm run start
